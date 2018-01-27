@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">民生链</string>
+    <string name="tab_home">首页</string>
+    <string name="tab_wallet">账户</string>
+    <string name="account_money_title">账户总额</string>
+    <string name="home_notification">公告</string>
+    <string name="my_wallet">我的账户</string>
+    <string name="create_account_title">创建账户</string>
+    <string name="create_account">创建一个账户</string>
+    <string name="create_account_pwd_tip">请设置一个不小于8位的交易密码请务必妥善保存，丢失将无法找回</string>
+    <string name="has_account_import">已有账户，立即导入账户</string>
+    <string name="set_first_pwd">请输入密码</string>
+    <string name="set_twice_pwd">请再次输入密码</string>
+    <string name="create_account_success">帐号创建成功！</string>
+
+    <string name="set_first_pwd_error">输入密码小于8位</string>
+    <string name="set_twice_pwd_error">两次输入密码不一致</string>
+    <string name="create_account_error">创建帐号失败，请重试！</string>
+</resources>
