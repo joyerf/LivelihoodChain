@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.datastruct.CreateAccountResult;
+import com.joyerf.livelihoodchain.db.GreenDaoManager;
 import com.joyerf.livelihoodchain.model.CreateAccountModel;
 import com.joyerf.livelihoodchain.utils.ToastUtils;
 
@@ -68,9 +69,12 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     public void onCreateAccount(CreateAccountResult account) {
         if(account == null){
             ToastUtils.showToast(this, R.string.create_account_error);
-        } else {
+        } else if("100".equals(account.code)){
             ToastUtils.showToast(this, R.string.create_account_success);
+            GreenDaoManager.getInstance().getDaoSession().insertOrReplace(new ChainAccount(account));
             finish();
+        } else {
+            ToastUtils.showToast(this, account.msg);
         }
     }
 }

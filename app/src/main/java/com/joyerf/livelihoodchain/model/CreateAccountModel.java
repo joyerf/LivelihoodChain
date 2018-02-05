@@ -47,7 +47,6 @@ public class CreateAccountModel extends BaseModel implements Constants {
                 String responseStr = response.body().string();
                 Log.d("CreateAccountModel", "onResponse " + responseStr);
                 CreateAccountResult account = gson.fromJson(responseStr, CreateAccountResult.class);
-                GreenDaoManager.getInstance().getDaoSession().insertOrReplace(new ChainAccount(account));
                 listener.onCreateAccount(account);
             }
         });

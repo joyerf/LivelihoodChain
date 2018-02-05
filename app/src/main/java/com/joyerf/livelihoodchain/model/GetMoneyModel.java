@@ -1,10 +1,12 @@
 package com.joyerf.livelihoodchain.model;
 
-import android.widget.Toast;
+import android.text.TextUtils;
+import android.util.Log;
 
-import com.joyerf.livelihoodchain.MainActivity;
 import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.datastruct.ChainMoney;
+import com.joyerf.livelihoodchain.db.GreenDaoManager;
+import com.joyerf.livelihoodchain.gen.ChainAccountDao;
 
 import java.io.IOException;
 
@@ -19,10 +21,13 @@ import okhttp3.Response;
 
 public class GetMoneyModel extends BaseModel implements  Constants {
     public interface OnGetMoneyListener{
-        void onGetMoney(ChainMoney money);
+        void onGetMoney(String accountName, ChainMoney money);
     }
 
-    public void getMoney(String accountName, final OnGetMoneyListener listener){
+    public void getMoney(final String accountName, final OnGetMoneyListener listener){
+        if(TextUtils.isEmpty(accountName)){
+            return;
+        }
         final Request request = new Request.Builder()
                 .url(DOMAIN_URL + GET_MONEY + accountName)
                 .header(TOKEN_KEY, QSUNIPAY_TOKEN)
@@ -32,14 +37,32 @@ public class GetMoneyModel extends BaseModel implements  Constants {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                listener.onGetMoney(null);
+                listener.onGetMoney(accountName, null);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                ChainMoney money = gson.fromJson(response.body().string(), ChainMoney.class);
-                listener.onGetMoney(money);
+                String responseStr = response.body().string();
+                Log.d("GetMoneyModel", accountName + " onResponse " + responseStr);
+                ChainMoney money = gson.fromJson(responseStr, ChainMoney.class);
+                modifyChainAccountMoney(accountName, money);
+                listener.onGetMoney(accountName, money);
             }
         });
+    }
+
+    private void modifyChainAccountMoney(final String accountName, ChainMoney money){
+        if(money == null || TextUtils.isEmpty(money.getBalance())){
+            return;
+        }
+        money.setAccount(accountName);
+        GreenDaoManager.getInstance().getDaoSession().insertOrReplace(money);
+        //写入账号信息
+        ChainAccountDao accountDao = GreenDaoManager.getInstance().getDaoSession().getChainAccountDao();
+        ChainAccount account = accountDao.queryBuilder().where(ChainAccountDao.Properties.Account.eq(money.getAccount())).build().unique();
+        if(account != null){
+            account.setMoney(money.getBalance());
+            accountDao.update(account);
+        }
     }
 }

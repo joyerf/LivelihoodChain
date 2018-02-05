@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.datastruct.ChainMoney;
 import com.joyerf.livelihoodchain.db.GreenDaoManager;
-import com.joyerf.livelihoodchain.gen.ChainAccountDao;
 import com.joyerf.livelihoodchain.model.GetMoneyModel;
 import com.joyerf.livelihoodchain.utils.ThreadUtils;
 
@@ -44,21 +43,23 @@ public class HomeFragment extends Fragment implements GetMoneyModel.OnGetMoneyLi
     public void onResume() {
         super.onResume();
         List<ChainAccount> accounts = GreenDaoManager.getInstance().getDaoSession().getChainAccountDao().loadAll();
-        if(accounts != null && accounts.size() > 0){
-            mGetMoneyModel.getMoney(accounts.get(0).getAccount(), this);
+        for(ChainAccount account : accounts){
+            if(account != null){
+                mGetMoneyModel.getMoney(account.getAccount(), this);
+            }
         }
     }
 
     @Override
-    public void onGetMoney(final ChainMoney money) {
+    public void onGetMoney(final  String accountName, final ChainMoney money) {
         if(money != null){
             if(ThreadUtils.isMainThread()){
-                mMoneyTextView.setText(money.balance);
+                mMoneyTextView.setText(money.getBalance());
             } else {
                 ThreadUtils.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mMoneyTextView.setText(money.balance);
+                        mMoneyTextView.setText(money.getBalance());
                     }
                 });
             }

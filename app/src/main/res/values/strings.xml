@@ -16,4 +16,7 @@
     <string name="set_first_pwd_error">输入密码小于8位</string>
     <string name="set_twice_pwd_error">两次输入密码不一致</string>
     <string name="create_account_error">创建帐号失败，请重试！</string>
+
+    <string name="account_name">账户%1$d</string>
+    <string name="account_money">余额 %1$s</string>
 </resources>

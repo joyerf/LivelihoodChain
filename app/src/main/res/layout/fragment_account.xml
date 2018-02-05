@@ -1,26 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <RelativeLayout
-        android:background="@color/home_title_bg"
+    android:layout_height="wrap_content">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp">
-        <TextView
-            android:layout_centerInParent="true"
-            android:text="@string/my_wallet"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/two_text_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView android:id="@+id/home_add_iv"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/add_margin_top"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/home_add"
-            android:scaleType="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:contentDescription="TODO" />
-    </RelativeLayout>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="#EFF1F3"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/home_title_bg">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/my_wallet"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/title_bar_title_text_size" />
+
+            <ImageView
+                android:id="@+id/home_add_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/add_margin_top"
+                android:contentDescription="TODO"
+                android:scaleType="center"
+                android:src="@mipmap/home_add" />
+        </RelativeLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/account_card_container_height"
+            android:layout_marginTop="17dp" />
+
+        <com.joyerf.livelihoodchain.ViewIndicator
+            android:id="@+id/page_indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"/>
+
+        <include
+            android:id="@+id/notification_center_layout"
+            layout="@layout/item_settings"
+            android:layout_width="match_parent"
+            android:layout_height="47dp" />
+
+        <include
+            android:id="@+id/help_center_layout"
+            layout="@layout/item_settings"
+            android:layout_width="match_parent"
+            android:layout_height="47dp" />
+
+        <include
+            android:id="@+id/contact_us_layout"
+            layout="@layout/item_settings"
+            android:layout_width="match_parent"
+            android:layout_height="47dp" />
+
+        <include
+            android:id="@+id/more_layout"
+            layout="@layout/item_settings"
+            android:layout_width="match_parent"
+            android:layout_height="47dp" />
+
+    </LinearLayout>
+</ScrollView>

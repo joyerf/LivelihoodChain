@@ -20,7 +20,7 @@ android {
         }
     }
     greendao {
-        schemaVersion 2
+        schemaVersion 1
         daoPackage 'com.joyerf.livelihoodchain.gen'
         targetGenDir 'src/main/java'
     }

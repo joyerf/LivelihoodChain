@@ -2,6 +2,7 @@ package com.joyerf.livelihoodchain.datastruct;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Unique;
 import org.greenrobot.greendao.annotation.Generated;
@@ -24,23 +25,28 @@ public class ChainAccount {
     @Property(nameInDb = "key_content")
     String key_content;
 
-    public ChainAccount() {
+    @Property(nameInDb = "money")
+    String money;
 
+    @Generated(hash = 1384628016)
+    public ChainAccount() {
     }
-    
+
+    @Keep
     public ChainAccount(CreateAccountResult result) {
         this.account = result.account;
         this.key_name = result.key_name;
         this.key_content = result.key_content;
     }
 
-    @Generated(hash = 760003747)
+    @Generated(hash = 1111649233)
     public ChainAccount(Long id, String account, String key_name,
-            String key_content) {
+            String key_content, String money) {
         this.id = id;
         this.account = account;
         this.key_name = key_name;
         this.key_content = key_content;
+        this.money = money;
     }
 
     @Override
@@ -82,5 +88,13 @@ public class ChainAccount {
 
     public void setKey_content(String key_content) {
         this.key_content = key_content;
+    }
+
+    public String getMoney(){
+        return this.money;
+    }
+
+    public void setMoney(String money){
+        this.money = money;
     }
 }

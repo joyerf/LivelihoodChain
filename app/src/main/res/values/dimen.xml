@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="one_text_size">14sp</dimen>
-    <dimen name="two_text_size">24sp</dimen>
+    <dimen name="two_text_size">17sp</dimen>
     <dimen name="three_text_size">32sp</dimen>
-    <dimen name="title_bar_title_text_size">18dp</dimen>
+    <dimen name="title_bar_title_text_size">17sp</dimen>
 
     <dimen name="title_margin_top">20dp</dimen>
     <dimen name="add_margin_top">27dp</dimen>
     <dimen name="add_margin_right">27dp</dimen>
     <dimen name="account_title_margin_bottom">8dp</dimen>
+
+    <dimen name="account_card_width">276dp</dimen>
+    <dimen name="account_card_height">170dp</dimen>
+    <dimen name="account_card_left_right">50dp</dimen>
+    <dimen name="account_card_top_bottom">14dp</dimen>
+    <dimen name="account_card_container_height">214dp</dimen>
 </resources>
