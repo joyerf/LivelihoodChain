@@ -1,12 +1,12 @@
 package com.joyerf.livelihoodchain.model;
 
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.datastruct.ChainMoney;
 import com.joyerf.livelihoodchain.db.GreenDaoManager;
 import com.joyerf.livelihoodchain.gen.ChainAccountDao;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class GetMoneyModel extends BaseModel implements  Constants {
         }
         final Request request = new Request.Builder()
                 .url(DOMAIN_URL + GET_MONEY + accountName)
-                .header(TOKEN_KEY, QSUNIPAY_TOKEN)
+                .header(TOKEN_KEY, QS_UNI_PAY_TOKEN)
                 .get()
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -38,12 +38,13 @@ public class GetMoneyModel extends BaseModel implements  Constants {
             @Override
             public void onFailure(Call call, IOException e) {
                 listener.onGetMoney(accountName, null);
+                Logger.e(e, "getMoney onFailure");
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr = response.body().string();
-                Log.d("GetMoneyModel", accountName + " onResponse " + responseStr);
+                Logger.t(accountName).json(responseStr);
                 ChainMoney money = gson.fromJson(responseStr, ChainMoney.class);
                 modifyChainAccountMoney(accountName, money);
                 listener.onGetMoney(accountName, money);

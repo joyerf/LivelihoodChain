@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:id="@+id/title_bar"
+        android:background="@color/title_bar_bg"
+        android:layout_width="match_parent" android:layout_height="45dp">
+        <TextView android:id="@+id/title_bar_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/title_bar_title_text_size"
+            android:text="账户备份"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView android:id="@+id/backup_skip_tv"
+            android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:text="跳过"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <ImageView android:id="@+id/create_success_iv"
+        android:layout_below="@id/title_bar"
+        android:layout_marginTop="44dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="center"
+        android:src="@mipmap/ic_create_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/create_success_tv"
+        android:layout_below="@+id/create_success_iv"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/create_success_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/backup_tv"
+        android:layout_below="@+id/create_success_tv"
+        android:background="@drawable/btn_bg_backup"
+        android:layout_marginTop="17dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="立即备份"
+        android:layout_width="122dp"
+        android:layout_height="36dp" />
+    <TextView android:id="@+id/backup_tip_tv"
+        android:layout_below="@+id/backup_tv"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:text="数字密钥仅您个人所有，一旦丢失将无法找回，请务必完成备份并妥善保管！"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/address_tv_tip"
+        android:layout_below="@+id/backup_tip_tv"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:text="您的地址："
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView android:id="@+id/address_tv"
+        android:layout_below="@+id/address_tv_tip"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="23dp"
+        android:textSize="14sp"
+        android:textColor="#F6AA01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.joyerf.livelihoodchain;
+package com.joyerf.livelihoodchain.view.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.joyerf.livelihoodchain.R;
 import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.db.GreenDaoManager;
 import com.joyerf.livelihoodchain.gen.ChainAccountDao;
 import com.joyerf.livelihoodchain.utils.ToastUtils;
+import com.joyerf.livelihoodchain.view.CreateAccountActivity;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -147,7 +149,7 @@ public class AccountFragment extends Fragment implements ViewPager.OnPageChangeL
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            Log.d(TAG, "====instantiateItem=== "+position);
+            Logger.d("====instantiateItem=== %d", position);
             Context context = container.getContext();
             ChainAccount chainAccount = mAccountList.get(position);
             View itemView = LayoutInflater.from(context).inflate(R.layout.item_account, null);
@@ -169,7 +171,7 @@ public class AccountFragment extends Fragment implements ViewPager.OnPageChangeL
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            Log.d(TAG, "====destroyItem=== "+ position);
+            Logger.t(TAG).d("====destroyItem=== %d", position);
             container.removeView((View) object);
         }
     }

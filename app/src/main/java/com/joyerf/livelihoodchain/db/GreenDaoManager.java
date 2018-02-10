@@ -1,6 +1,6 @@
 package com.joyerf.livelihoodchain.db;
 
-import com.joyerf.livelihoodchain.ChainApplication;
+import com.joyerf.livelihoodchain.ContextHolder;
 import com.joyerf.livelihoodchain.gen.DaoMaster;
 import com.joyerf.livelihoodchain.gen.DaoSession;
 
@@ -36,7 +36,7 @@ public class GreenDaoManager {
      * 初始化数据
      */
     private void init() {
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(ChainApplication.getContext(),
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(ContextHolder.getContext(),
                 "account");
         mDaoMaster = new DaoMaster(devOpenHelper.getWritableDatabase());
         mDaoSession = mDaoMaster.newSession();

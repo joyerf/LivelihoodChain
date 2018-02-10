@@ -1,13 +1,9 @@
 package com.joyerf.livelihoodchain.model;
 
-import android.util.Log;
-
-import com.joyerf.livelihoodchain.datastruct.ChainAccount;
 import com.joyerf.livelihoodchain.datastruct.CreateAccountResult;
-import com.joyerf.livelihoodchain.db.GreenDaoManager;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
-import java.util.logging.Logger;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -31,7 +27,7 @@ public class CreateAccountModel extends BaseModel implements Constants {
         RequestBody body = RequestBody.create(JSON, "{\"password\":\"" + pwd + "\"}");
         final Request request = new Request.Builder()
                 .url(DOMAIN_URL + CREATE_ACCOUNT_PATH)
-                .header(TOKEN_KEY, QSUNIPAY_TOKEN)
+                .header(TOKEN_KEY, QS_UNI_PAY_TOKEN)
                 .post(body)
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -45,7 +41,7 @@ public class CreateAccountModel extends BaseModel implements Constants {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr = response.body().string();
-                Log.d("CreateAccountModel", "onResponse " + responseStr);
+                Logger.t("CreateAccountModel").json(responseStr);
                 CreateAccountResult account = gson.fromJson(responseStr, CreateAccountResult.class);
                 listener.onCreateAccount(account);
             }

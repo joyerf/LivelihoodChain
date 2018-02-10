@@ -1,4 +1,4 @@
-package com.joyerf.livelihoodchain;
+package com.joyerf.livelihoodchain.view.home;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.joyerf.livelihoodchain.R;
 
 import java.util.ArrayList;
 import java.util.List;

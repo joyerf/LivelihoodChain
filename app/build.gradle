@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'livelihood'
+            keyPassword 'livelihoodchain'
+            storeFile file('./livelihood.jks')
+            storePassword 'livelihoodchain'
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-
     defaultConfig {
         applicationId "com.joyerf.livelihoodchain"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -17,17 +24,18 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     greendao {
-        schemaVersion 1
+        schemaVersion 2
         daoPackage 'com.joyerf.livelihoodchain.gen'
         targetGenDir 'src/main/java'
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     //logger
@@ -35,9 +43,7 @@ dependencies {
     //okhttp3
     compile "com.squareup.okhttp3:okhttp:$rootProject.okhttp3"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
-
-    compile "com.google.code.gson:gson:2.8.0"
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.greenrobot:greendao:3.2.0'
-
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
 }
