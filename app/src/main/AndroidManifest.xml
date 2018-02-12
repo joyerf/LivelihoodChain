@@ -22,5 +22,21 @@
         </activity>
         <activity android:name=".view.CreateAccountActivity"/>
         <activity android:name=".view.BackupAccountActivity"/>
+        <!-- Bugly升级SDK配置开始  -->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent"/>
+
+        <!--API 24以上配置-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.joyerf.livelihoodchain.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 </manifest>
